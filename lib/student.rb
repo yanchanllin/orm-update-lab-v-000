@@ -64,6 +64,7 @@ new_student # return the newly created instance
        end.first
     end
   def update
-
-  end
+    sql = "UPDATE songs SET name = ?, grade = ? WHERE name = ?"
+     DB[:conn].execute(sql, self.name, self.grade, self.name)
+   end
 end
