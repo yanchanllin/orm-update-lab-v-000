@@ -52,7 +52,7 @@ class Student
     new_student # return the newly created instance
   end
 
-  def self.find_by_name(id:,name:,grade:)
+  def self.find_by_name(id,name,grade)
     # find the student in the database given a name
     # return a new instance of the Student class
     sql = <<-SQL
