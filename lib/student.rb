@@ -44,7 +44,7 @@ class Student
     student
   end
 
-  def self.new_from_db(row:,id:,name:,grade:)
+  def self.new_from_db(row:)
     # create a new Student object given a row from the database
     new_student = self.new  # self.new is the same as running Student.new
     new_student.id = row[0]
@@ -64,7 +64,7 @@ class Student
     SQL
 
     DB[:conn].execute(sql, name).map do |row|
-      self.new_from_db(row)
+      self.new_from_db(row:)
     end.first
   end
   def update
