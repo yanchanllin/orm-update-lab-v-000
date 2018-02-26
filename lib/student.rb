@@ -30,14 +30,14 @@ class Student
       self.update
     else
       sql = <<-SQL
-      INSERT INTO students (name, grade) 
+      INSERT INTO students (name, grade)
       VALUES (?, ?)
       SQL
       DB[:conn].execute(sql, self.name, self.grade)
       @id = DB[:conn].execute("SELECT last_insert_rowid() FROM students")[0][0]
-    end 
+    end
   end
-  
+
   def self.create(name:, grade:)
     student = Student.new(name, grade)
     student.save
@@ -51,7 +51,7 @@ class Student
     new_student.grade = row[2]
     new_student # return the newly created instance
   end
-  
+
   def self.find_by_name(name)
     # find the student in the database given a name
     # return a new instance of the Student class
@@ -61,13 +61,13 @@ class Student
     WHERE name = ?
     LIMIT 1
     SQL
-    
+
     DB[:conn].execute(sql, name).map do |row|
       self.new_from_db(row)
     end.first
   end
   def update
-    sql = "UPDATE songs SET name = ?, grade = ? WHERE name = ?"
-    DB[:conn].execute(sql, self.name, self.grade, self.name)
+    sql = "UPDATE songs SET name = ?, grade = ? WHERE id = ?"
+    DB[:conn].execute(sql, self.name, self.grade, self.id)
   end
 end
