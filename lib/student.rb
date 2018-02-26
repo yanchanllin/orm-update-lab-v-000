@@ -43,7 +43,7 @@ class Student
     student.save
     student
   end
-  def self.new_from_db(row:,id:,name:,grade:)
+  def self.new_from_db(row,id,name,grade)
     # create a new Student object given a row from the database
     new_student = self.new  # self.new is the same as running Song.new
     new_student.id = row[0]
@@ -66,7 +66,7 @@ class Student
       self.new_from_db(row)
     end.first
   end
-  def update(id,name,grade)
+  def update
     sql = "UPDATE students SET name = ?, grade = ? WHERE id = ?"
     DB[:conn].execute(sql, self.name, self.grade, self.id)
   end
