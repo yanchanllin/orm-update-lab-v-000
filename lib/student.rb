@@ -64,6 +64,6 @@ new_student # return the newly created instance
        end.first
     end
   def update
-    
-  end  
+
+  end
 end
