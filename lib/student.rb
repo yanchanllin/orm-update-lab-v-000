@@ -43,7 +43,7 @@ class Student
     student.save
     student
   end
-  def self.new_from_db(row)
+  def self.new_from_db(row:,id:,name:,grade:)
     # create a new Student object given a row from the database
     new_student = self.new  # self.new is the same as running Song.new
     new_student.id = row[0]
