@@ -52,7 +52,7 @@ class Student
     new_student # return the newly created instance
   end
 
-  def self.find_by_name(name)
+  def self.find_by_name(id:,name:,grade:)
     # find the student in the database given a name
     # return a new instance of the Student class
     sql = <<-SQL
@@ -66,7 +66,7 @@ class Student
       self.new_from_db(row)
     end.first
   end
-  def update
+  def update(id:,name:,grade:)
     sql = "UPDATE students SET name = ?, grade = ? WHERE id = ?"
     DB[:conn].execute(sql, self.name, self.grade, self.id)
   end
